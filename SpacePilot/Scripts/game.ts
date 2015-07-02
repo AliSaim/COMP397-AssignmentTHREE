@@ -6,6 +6,7 @@
 
 /// <reference path="objects/ship.ts" />
 /// <reference path="objects/gem.ts" />
+/// <reference path="objects/rock.ts" />
 
 
 
@@ -17,7 +18,8 @@ var stats: Stats;
 var assets: createjs.LoadQueue;
 var manifest = [
     { id: "ship", src: "assets/images/ship.png" },
-    { id: "gem", src: "assets/images/gem.png" }
+    { id: "gem", src: "assets/images/gem.png" },
+    { id: "rock", src: "assets/images/rock.png" }
 ];
 
 
@@ -25,6 +27,8 @@ var manifest = [
 
 var ship: objects.Ship;
 var gem: objects.Gem;
+var rocks :objects.Rock[] = [];
+
 
 
 //preloader Function
@@ -44,8 +48,6 @@ function preload() {
         createjs.Ticker.setFPS(60); // framerate 60 fps for the game
         //event listener triggers 60 times every second
         createjs.Ticker.on("tick", gameLoop);
-
-
         //calling main game function
         main();
     }
@@ -54,12 +56,10 @@ function preload() {
     function setupStats() {
         stats = new Stats();
         stats.setMode(0);//set to fps
-
         // align bottom-right
         stats.domElement.style.position = 'absolute';
         stats.domElement.style.left = '650px';
         stats.domElement.style.top = '10px';
-
         document.body.appendChild(stats.domElement);
     }
 
@@ -70,6 +70,11 @@ function preload() {
 
         ship.update();
         gem.update();
+      
+        for (var rock = 0; rock < 3; rock++) {
+            rocks[rock].update();
+        }
+
 
         stage.update();
 
@@ -87,11 +92,16 @@ function preload() {
         gem = new objects.Gem(assets.getResult("gem"));
         stage.addChild(gem);
         
-
         //add ship object to stage
         ship = new objects.Ship(assets.getResult("ship"));
         stage.addChild(ship);
 
-        
+
+
+        //add 3 rock object to stage
+        for (var rock = 0; rock < 3; rock++) {
+            rocks[rock] = new objects.Rock(assets.getResult("rock"));
+            stage.addChild(rocks[rock]);
+        }
     }
 }

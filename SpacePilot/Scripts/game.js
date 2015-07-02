@@ -5,6 +5,7 @@
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
 /// <reference path="objects/ship.ts" />
 /// <reference path="objects/gem.ts" />
+/// <reference path="objects/rock.ts" />
 // Game Framework Variables
 var canvas = document.getElementById("canvas");
 var stage;
@@ -12,11 +13,13 @@ var stats;
 var assets;
 var manifest = [
     { id: "ship", src: "assets/images/ship.png" },
-    { id: "gem", src: "assets/images/gem.png" }
+    { id: "gem", src: "assets/images/gem.png" },
+    { id: "rock", src: "assets/images/rock.png" }
 ];
 // Game Variables
 var ship;
 var gem;
+var rocks = [];
 //preloader Function
 function preload() {
     assets = new createjs.LoadQueue();
@@ -50,6 +53,9 @@ function preload() {
         stats.begin(); //begin measuring
         ship.update();
         gem.update();
+        for (var rock = 0; rock < 3; rock++) {
+            rocks[rock].update();
+        }
         stage.update();
         stats.end(); //end measuring
     }
@@ -61,6 +67,11 @@ function preload() {
         //add ship object to stage
         ship = new objects.Ship(assets.getResult("ship"));
         stage.addChild(ship);
+        //add 3 rock object to stage
+        for (var rock = 0; rock < 3; rock++) {
+            rocks[rock] = new objects.Rock(assets.getResult("rock"));
+            stage.addChild(rocks[rock]);
+        }
     }
 }
 //# sourceMappingURL=game.js.map
