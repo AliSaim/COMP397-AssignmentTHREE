@@ -4,6 +4,10 @@
 /// <reference path="typings/soundjs/soundjs.d.ts" />
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
 
+/// <reference path="objects/ship.ts" />
+/// <reference path="objects/gem.ts" />
+
+
 
 // Game Framework Variables
 var canvas = document.getElementById("canvas");
@@ -12,13 +16,15 @@ var stats: Stats;
 
 var assets: createjs.LoadQueue;
 var manifest = [
-    { id: "ship", src: "assets/images/ship.png" }
+    { id: "ship", src: "assets/images/ship.png" },
+    { id: "gem", src: "assets/images/gem.png" }
 ];
 
 
 // Game Variables
 
-//NEED ship object
+var ship: objects.Ship;
+var gem: objects.Gem;
 
 
 //preloader Function
@@ -51,7 +57,7 @@ function preload() {
 
         // align bottom-right
         stats.domElement.style.position = 'absolute';
-        stats.domElement.style.left = '330px';
+        stats.domElement.style.left = '650px';
         stats.domElement.style.top = '10px';
 
         document.body.appendChild(stats.domElement);
@@ -61,14 +67,31 @@ function preload() {
     function gameLoop() {
         stats.begin(); //begin measuring
 
-        stats.update(); //end measuring
 
+        ship.update();
+        gem.update();
 
         stage.update();
+
+        stats.end(); //end measuring
+
+
+        
     }
 
 
     // Our Main Game Function
     function main() {
+
+        //add gem object to stage
+        gem = new objects.Gem(assets.getResult("gem"));
+        stage.addChild(gem);
+        
+
+        //add ship object to stage
+        ship = new objects.Ship(assets.getResult("ship"));
+        stage.addChild(ship);
+
+        
     }
 }
