@@ -9,12 +9,10 @@ var stage;
 var stats;
 var assets;
 var manifest = [
-    { id: "pinkButton", src: "assets/images/pinkButton.png" },
-    { id: "clicked", src: "assets/audio/clicked.wav" }
+    { id: "ship", src: "assets/images/ship.png" }
 ];
 // Game Variables
-var helloLabel; // create a reference
-var pinkButton;
+//NEED ship object
 //preloader Function
 function preload() {
     assets = new createjs.LoadQueue();
@@ -49,37 +47,8 @@ function preload() {
         stats.update(); //end measuring
         stage.update();
     }
-    //callback function that allows me to respond to button click events
-    function pinkButtonClicked(event) {
-        createjs.Sound.play("clicked");
-    }
-    //callback function that cahnges the alpha transparency of the button
-    //mouseover event
-    function pinkButtonOver() {
-        pinkButton.alpha = 0.8;
-    }
-    //mouseout event
-    function pinkButtonOut() {
-        pinkButton.alpha = 1.0;
-    }
     // Our Main Game Function
     function main() {
-        console.log("Game is Running");
-        helloLabel = new createjs.Text("Hello World!", "40px Consolas", "#000000");
-        helloLabel.regX = helloLabel.getMeasuredWidth() * 0.5;
-        helloLabel.regY = helloLabel.getMeasuredHeight() * 0.5;
-        helloLabel.x = 160;
-        helloLabel.y = 190;
-        stage.addChild(helloLabel);
-        pinkButton = new createjs.Bitmap(assets.getResult("pinkButton"));
-        pinkButton.regX = pinkButton.getBounds().width * 0.5;
-        pinkButton.regY = pinkButton.getBounds().height * 0.5;
-        pinkButton.x = 160;
-        pinkButton.y = 270;
-        stage.addChild(pinkButton);
-        pinkButton.on("click", pinkButtonClicked);
-        pinkButton.on("mouseover", pinkButtonOver);
-        pinkButton.on("mouseout", pinkButtonOut);
     }
 }
 //# sourceMappingURL=game.js.map
