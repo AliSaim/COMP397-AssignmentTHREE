@@ -3,6 +3,7 @@
 /// <reference path="typings/tweenjs/tweenjs.d.ts" />
 /// <reference path="typings/soundjs/soundjs.d.ts" />
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
+/// <reference path="objects/space.ts" />
 /// <reference path="objects/ship.ts" />
 /// <reference path="objects/gem.ts" />
 /// <reference path="objects/rock.ts" />
@@ -12,11 +13,13 @@ var stage;
 var stats;
 var assets;
 var manifest = [
-    { id: "ship", src: "assets/images/ship.png" },
+    { id: "space", src: "assets/images/earthSpace.png" },
+    { id: "ship", src: "assets/images/ship2.png" },
     { id: "gem", src: "assets/images/gem.png" },
     { id: "rock", src: "assets/images/rock.png" }
 ];
 // Game Variables
+var space;
 var ship;
 var gem;
 var rocks = [];
@@ -51,6 +54,7 @@ function preload() {
     //Callback function that creats Our Main Game Loop - refreshed 60 fps
     function gameLoop() {
         stats.begin(); //begin measuring
+        space.update();
         ship.update();
         gem.update();
         for (var rock = 0; rock < 3; rock++) {
@@ -59,8 +63,14 @@ function preload() {
         stage.update();
         stats.end(); //end measuring
     }
+    function distance(p1, p2) {
+        return Math.floor(Math.sqrt(Math.pow((p2.x - p1.x), 2) + Math.pow((p2.y - p1.y), 2)));
+    }
     // Our Main Game Function
     function main() {
+        //add space object to stage
+        space = new objects.Space(assets.getResult("space"));
+        stage.addChild(space);
         //add gem object to stage
         gem = new objects.Gem(assets.getResult("gem"));
         stage.addChild(gem);

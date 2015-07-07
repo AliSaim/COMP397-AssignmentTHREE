@@ -59,10 +59,17 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\images\earthSpace.png" />
     <Content Include="assets\images\gem.png" />
     <Content Include="assets\images\rock.png" />
     <Content Include="assets\images\ship.png" />
+    <Content Include="assets\images\ship2.png" />
     <Content Include="assets\images\space.gif" />
+    <Content Include="assets\images\space10.jpg" />
+    <Content Include="assets\images\space2.gif" />
+    <Content Include="assets\images\space3.jpg" />
+    <Content Include="assets\images\space6.jpg" />
+    <Content Include="assets\images\space9.jpg" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -93,6 +100,7 @@
     <TypeScriptCompile Include="Scripts\objects\gem.ts" />
     <TypeScriptCompile Include="Scripts\objects\rock.ts" />
     <TypeScriptCompile Include="Scripts\objects\ship.ts" />
+    <TypeScriptCompile Include="Scripts\objects\space.ts" />
     <TypeScriptCompile Include="Scripts\typings\createjs-lib\createjs-lib.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\easeljs\easeljs.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\preloadjs\preloadjs.d.ts" />

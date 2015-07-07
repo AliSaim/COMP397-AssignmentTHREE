@@ -6,13 +6,12 @@ var __extends = this.__extends || function (d, b) {
 };
 var objects;
 (function (objects) {
-    //Gem Class ++++++++++++++++++++++++++++++++++++
-    var Gem = (function (_super) {
-        __extends(Gem, _super);
+    //Rock Class ++++++++++++++++++++++++++++++++++++
+    var Rock = (function (_super) {
+        __extends(Rock, _super);
         //CONSTRUCTOR +++++++++++++++++++++++++++++++
-        function Gem(imageString) {
+        function Rock(imageString) {
             _super.call(this, imageString);
-            this.dx = 5;
             this.width = this.getBounds().width;
             this.heigh = this.getBounds().height;
             this.regX = this.width * 0.5;
@@ -21,25 +20,31 @@ var objects;
             this.reset();
         }
         //PRIVATE METHODS
-        Gem.prototype.checkBounds = function () {
+        Rock.prototype.checkBounds = function () {
             //Check if gem has left the screen
             if (this.x < 0) {
                 this.reset();
             }
         };
-        Gem.prototype.reset = function () {
-            //this.y = Math.floor(Math.random() * 480); //stage gem at random location
+        Rock.prototype.reset = function () {
+            //this.y = Math.floor(Math.random() * 480); //stage rock at random location
             //this.x = - this.width; //starts gem off stage
             this.x = 640;
-            this.y = Math.floor(Math.random() * 480); //stage gem at random location
+            this.y = Math.floor(Math.random() * 480); //stage rock at random location
+            //this.y = - this.heigh;
+            this.dx = Math.floor(Math.random() * 5 + 4);
+            this.dy = Math.floor(Math.random() * 4 - 2);
         };
         //PUBLIC METHODS ++++++++++++++++++++++++++++
-        Gem.prototype.update = function () {
+        Rock.prototype.update = function () {
+            //this.x += this.dx; // moves rock to the left of stage
+            // this.x += this.dx;
             this.x = this.x - this.dx;
+            this.y += this.dy; //drifts rock right and left
             this.checkBounds();
         };
-        return Gem;
+        return Rock;
     })(createjs.Bitmap);
-    objects.Gem = Gem;
+    objects.Rock = Rock;
 })(objects || (objects = {}));
-//# sourceMappingURL=gem.js.map
+//# sourceMappingURL=rock.js.map

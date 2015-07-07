@@ -4,6 +4,7 @@
 /// <reference path="typings/soundjs/soundjs.d.ts" />
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
 
+/// <reference path="objects/space.ts" />
 /// <reference path="objects/ship.ts" />
 /// <reference path="objects/gem.ts" />
 /// <reference path="objects/rock.ts" />
@@ -17,13 +18,15 @@ var stats: Stats;
 
 var assets: createjs.LoadQueue;
 var manifest = [
-    { id: "ship", src: "assets/images/ship.png" },
+    { id: "space", src: "assets/images/earthSpace.png" },
+    { id: "ship", src: "assets/images/ship2.png" },
     { id: "gem", src: "assets/images/gem.png" },
     { id: "rock", src: "assets/images/rock.png" }
 ];
 
 
 // Game Variables
+var space: objects.Space;
 
 var ship: objects.Ship;
 var gem: objects.Gem;
@@ -67,7 +70,7 @@ function preload() {
     function gameLoop() {
         stats.begin(); //begin measuring
 
-
+        space.update();
         ship.update();
         gem.update();
       
@@ -79,14 +82,19 @@ function preload() {
         stage.update();
 
         stats.end(); //end measuring
+    }
 
-
-        
+    function distance(p1: createjs.Point, p2: createjs.Point) {
+        return Math.floor(Math.sqrt(Math.pow((p2.x - p1.x), 2) + Math.pow((p2.y - p1.y), 2)));
     }
 
 
     // Our Main Game Function
     function main() {
+
+        //add space object to stage
+        space = new objects.Space(assets.getResult("space"));
+        stage.addChild(space);
 
         //add gem object to stage
         gem = new objects.Gem(assets.getResult("gem"));
@@ -95,8 +103,6 @@ function preload() {
         //add ship object to stage
         ship = new objects.Ship(assets.getResult("ship"));
         stage.addChild(ship);
-
-
 
         //add 3 rock object to stage
         for (var rock = 0; rock < 3; rock++) {
