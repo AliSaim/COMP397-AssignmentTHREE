@@ -5,6 +5,9 @@
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
 
 /// <reference path="utility/utility.ts" />
+/// <reference path="managers/asset.ts" />
+
+
 /// <reference path="objects/gameobject.ts" />
 /// <reference path="objects/space.ts" />
 /// <reference path="objects/ship.ts" />
@@ -22,39 +25,6 @@ var stage: createjs.Stage;
 var stats: Stats;
 var game: createjs.Container;
 
-var assets: createjs.LoadQueue;
-var atlas: createjs.SpriteSheet;
-
-var manifest = [
-    { id: "space", src: "assets/images/earthSpace.png" },
-    //sounds
-    { id: "collectSound", src: "assets/audio/collect.mp3" },
-    { id: "hitSound", src: "assets/audio/hitOne.wav" },
-    { id: "engineSound", src: "assets/audio/spaceShipTwo.mp3" }
-];
-
-var data = {
-    "images": [
-        "assets/images/atlas.png"
-    ],
-
-    "frames": [
-        [2, 2, 65, 64, 0, 0, 0],
-        [69, 2, 65, 62, 0, 0, 0],
-        [69, 66, 65, 26, 0, 0, 0],
-        [2, 68, 21, 20, 0, -1, -2]
-    ],
-
-    "animations": {
-        "ship": [0],
-        "rock": [1],
-        "ship2": [2],
-        "gem": [3]
-    }
-}
-
-
-
 // Game Variables
 var space: objects.Space;
 var ship: objects.Ship;
@@ -64,23 +34,18 @@ var rocks: objects.Rock[] = [];
 var scoreboard: objects.ScoreBoard;
 
 //Game Managers
+var assets: managers.Asset;
 var collision: managers.Collision;
-
 
 
 //preloader Function
 function preload() {
-    assets = new createjs.LoadQueue();
-    assets.installPlugin(createjs.Sound);
-    // event listinener handler triggers hwne assets are completely loaded
-    assets.on("complete", init, this);
-    assets.loadManifest(manifest);
-
-    //create texture atlas
-    atlas = new createjs.SpriteSheet(data);
+    //Instantiate asset manager class
+    assets = new managers.Asset();
 
     //setup staistics object
     setupStats();
+    }
 
     //call back function that Initializing game objects
     function init() {
@@ -132,7 +97,7 @@ function preload() {
         game = new createjs.Container();
 
         //add space object to stage
-        space = new objects.Space(assets.getResult("space"));
+        space = new objects.Space(assets.loader.getResult("space"));
         game.addChild(space);
 
         //add gem object to stage
@@ -159,4 +124,3 @@ function preload() {
         //add game contariter to stage
         stage.addChild(game);
     }
-}
