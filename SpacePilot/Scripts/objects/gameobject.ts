@@ -1,6 +1,6 @@
 ﻿module objects {
     //Game Object Class ++++++++++++++++++++++++++++++++++++
-    export class GameObject extends createjs.Bitmap {
+    export class GameObject extends createjs.Sprite {
         //PUBLIC PROPERTIES ++++++++++++++++++++++++++++++++
         public width: number;
         public heigh: number;
@@ -14,12 +14,11 @@
 
         //CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++
         constructor(imageString: string) {
-            super(imageString);
+            super(atlas,imageString);
             this.width = this.getBounds().width;
             this.heigh = this.getBounds().height;
             this.regX = this.width * 0.5;
             this.regY = this.heigh * 0.5;
         }
-
     }
 } 

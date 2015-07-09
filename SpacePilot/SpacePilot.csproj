@@ -67,6 +67,7 @@
     <Content Include="assets\audio\space.mp3" />
     <Content Include="assets\audio\spaceShipTwo.mp3" />
     <Content Include="assets\audio\spacesShipOne.wav" />
+    <Content Include="assets\images\atlas.png" />
     <Content Include="assets\images\earthSpace.png" />
     <Content Include="assets\images\gem.png" />
     <Content Include="assets\images\rock.png" />
@@ -79,6 +80,7 @@
     <Content Include="assets\images\space6.jpg" />
     <Content Include="assets\images\space9.jpg" />
     <Content Include="packages.config" />
+    <Content Include="assets\images\atlas.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -111,6 +113,7 @@
     <TypeScriptCompile Include="Scripts\objects\scoreboard.ts" />
     <TypeScriptCompile Include="Scripts\objects\ship.ts" />
     <TypeScriptCompile Include="Scripts\objects\space.ts" />
+    <TypeScriptCompile Include="Scripts\states\play.ts" />
     <TypeScriptCompile Include="Scripts\typings\createjs-lib\createjs-lib.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\easeljs\easeljs.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\preloadjs\preloadjs.d.ts" />

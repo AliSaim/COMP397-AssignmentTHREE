@@ -11,7 +11,7 @@ var objects;
         __extends(GameObject, _super);
         //CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++
         function GameObject(imageString) {
-            _super.call(this, imageString);
+            _super.call(this, atlas, imageString);
             this.isColliding = false;
             this.sound = "";
             this.name = "";
@@ -21,7 +21,7 @@ var objects;
             this.regY = this.heigh * 0.5;
         }
         return GameObject;
-    })(createjs.Bitmap);
+    })(createjs.Sprite);
     objects.GameObject = GameObject;
 })(objects || (objects = {}));
 //# sourceMappingURL=gameobject.js.map

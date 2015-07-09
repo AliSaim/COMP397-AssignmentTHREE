@@ -11,12 +11,12 @@
         //CONSTRUCTOR +++++++++++++++++++++++++
         constructor() {
             this.livesLabel = new createjs.Text("Lives:", "40px Consolas", "#FFFF00");
-            this.scoreLabel = new createjs.Text("Score:",  "40px Consolas", "#FFFF00");
+            this.scoreLabel = new createjs.Text("Score:", "40px Consolas", "#FFFF00");
 
             this.livesLabel.x = 75
             this.scoreLabel.x = 400;
-            stage.addChild(this.livesLabel);
-            stage.addChild(this.scoreLabel);
+            game.addChild(this.livesLabel);
+            game.addChild(this.scoreLabel);
         }
 
         //PUBLIC METHODS +++++++++++++++++++++
