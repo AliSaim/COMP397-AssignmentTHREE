@@ -3,6 +3,7 @@
 /// <reference path="typings/tweenjs/tweenjs.d.ts" />
 /// <reference path="typings/soundjs/soundjs.d.ts" />
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
+/// <reference path="utility/utility.ts" />
 /// <reference path="objects/gameobject.ts" />
 /// <reference path="objects/space.ts" />
 /// <reference path="objects/ship.ts" />
@@ -70,10 +71,6 @@ function preload() {
         stage.update();
         stats.end(); //end measuring
     }
-    //Distance utility function
-    function distance(p1, p2) {
-        return Math.floor(Math.sqrt(Math.pow((p2.x - p1.x), 2) + Math.pow((p2.y - p1.y), 2)));
-    }
     //check distance between ship and rock
     function checkCollision(gameObject) {
         var p1 = new createjs.Point();
@@ -82,7 +79,7 @@ function preload() {
         p1.y = ship.y;
         p2.x = gameObject.x;
         p2.y = gameObject.y;
-        if (distance(p1, p2) < ((ship.heigh * 0.5) + (gameObject.heigh * 0.5))) {
+        if (utility.distance(p1, p2) < ((ship.heigh * 0.5) + (gameObject.heigh * 0.5))) {
             if (gameObject.isColliding == false) {
                 createjs.Sound.play(gameObject.sound);
             }
