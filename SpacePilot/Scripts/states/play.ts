@@ -1,9 +1,5 @@
 ﻿module states {
     export class Play {
-
-
-
-
         //CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++
         constructor() {
             this.main();
@@ -11,6 +7,7 @@
 
         //PUBLIC METHODS +++++++++++++++++++++++++++++++++++++
         //update methods
+
         public update() {
             space.update();
             ship.update();
@@ -28,34 +25,33 @@
 
 
         // Our Main Game Function
-        main() {
-        //instantiate new game container
-        game = new createjs.Container();
+        public main() {
+            //instantiate new game container
+            game = new createjs.Container();
 
-        //add space object to stage
-       // space = new objects.Space(assets.getResult("space"));
-        game.addChild(space);
+            //add space object to stage
+            space = new objects.Space(assets.loader.getResult("space"));
+            game.addChild(space);
 
-        //add gem object to stage
-        //gem = new objects.Gem(assets.getResult("gem"));
-        game.addChild(gem);
+            //add gem object to stage
+            gem = new objects.Gem("gem");
+            game.addChild(gem);
         
-        //add ship object to stage
-       // ship = new objects.Ship(assets.getResult("ship"));
-        game.addChild(ship);
+            //add ship object to stage
+            ship = new objects.Ship("ship2");
+            game.addChild(ship);
 
-        //add 3 rock object to stage
-        for (var rock = 0; rock < 3; rock++) {
-            //rocks[rock] = new objects.Rock(assets.getResult("rock"));
-            game.addChild(rocks[rock]);
-        }
+            //add 3 rock object to stage
+            for (var rock = 0; rock < 3; rock++) {
+                rocks[rock] = new objects.Rock("rock");
+                game.addChild(rocks[rock]);
+            }
 
-        //add scoreboard
-        scoreboard = new objects.ScoreBoard();
+            //add scoreboard
+            scoreboard = new objects.ScoreBoard();
 
-        //add collision manager
-        collision = new managers.Collision();
-
+            //add collision manager
+            collision = new managers.Collision();
 
         //add game contariter to stage
         stage.addChild(game);

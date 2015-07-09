@@ -12,6 +12,7 @@
 /// <reference path="objects/rock.ts" />
 /// <reference path="objects/scoreboard.ts" />
 /// <reference path="managers/collision.ts" />
+/// <reference path="states/play.ts" />
 // Game Framework Variables
 var canvas = document.getElementById("canvas");
 var stage;
@@ -26,6 +27,8 @@ var scoreboard;
 //Game Managers
 var assets;
 var collision;
+//Game States
+var play;
 //preloader Function
 function preload() {
     //Instantiate asset manager class
@@ -55,15 +58,7 @@ function setupStats() {
 //Callback function that creats Our Main Game Loop - refreshed 60 fps
 function gameLoop() {
     stats.begin(); //begin measuring
-    space.update();
-    ship.update();
-    gem.update();
-    for (var rock = 0; rock < 3; rock++) {
-        rocks[rock].update();
-        collision.check(rocks[rock]);
-    }
-    collision.check(gem);
-    scoreboard.update();
+    play.update();
     stage.update();
     stats.end(); //end measuring
 }
@@ -71,25 +66,10 @@ function gameLoop() {
 function main() {
     //instantiate new game container
     game = new createjs.Container();
-    //add space object to stage
-    space = new objects.Space(assets.loader.getResult("space"));
-    game.addChild(space);
-    //add gem object to stage
-    gem = new objects.Gem("gem");
-    game.addChild(gem);
-    //add ship object to stage
-    ship = new objects.Ship("ship2");
-    game.addChild(ship);
-    //add 3 rock object to stage
-    for (var rock = 0; rock < 3; rock++) {
-        rocks[rock] = new objects.Rock("rock");
-        game.addChild(rocks[rock]);
-    }
-    //add scoreboard
-    scoreboard = new objects.ScoreBoard();
-    //add collision manager
-    collision = new managers.Collision();
+    //instantiate play state
+    play = new states.Play();
     //add game contariter to stage
     stage.addChild(game);
+    console.log(play);
 }
 //# sourceMappingURL=game.js.map

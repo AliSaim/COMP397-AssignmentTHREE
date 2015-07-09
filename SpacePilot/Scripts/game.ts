@@ -7,7 +7,6 @@
 /// <reference path="utility/utility.ts" />
 /// <reference path="managers/asset.ts" />
 
-
 /// <reference path="objects/gameobject.ts" />
 /// <reference path="objects/space.ts" />
 /// <reference path="objects/ship.ts" />
@@ -17,6 +16,7 @@
 /// <reference path="objects/scoreboard.ts" />
 
 /// <reference path="managers/collision.ts" />
+/// <reference path="states/play.ts" />
 
 
 // Game Framework Variables
@@ -24,6 +24,7 @@ var canvas = document.getElementById("canvas");
 var stage: createjs.Stage;
 var stats: Stats;
 var game: createjs.Container;
+
 
 // Game Variables
 var space: objects.Space;
@@ -33,9 +34,14 @@ var rocks: objects.Rock[] = [];
 
 var scoreboard: objects.ScoreBoard;
 
+
 //Game Managers
 var assets: managers.Asset;
 var collision: managers.Collision;
+
+//Game States
+var play: states.Play;
+
 
 
 //preloader Function
@@ -73,18 +79,7 @@ function preload() {
     function gameLoop() {
         stats.begin(); //begin measuring
 
-        space.update();
-        ship.update();
-        gem.update();
-      
-        for (var rock = 0; rock < 3; rock++) {
-            rocks[rock].update();
-            collision.check(rocks[rock]);
-        }
-
-
-        collision.check(gem);
-        scoreboard.update();
+        play.update();
 
         stage.update();
 
@@ -96,31 +91,11 @@ function preload() {
         //instantiate new game container
         game = new createjs.Container();
 
-        //add space object to stage
-        space = new objects.Space(assets.loader.getResult("space"));
-        game.addChild(space);
-
-        //add gem object to stage
-        gem = new objects.Gem("gem");
-        game.addChild(gem);
+        //instantiate play state
+        play = new states.Play();
         
-        //add ship object to stage
-        ship = new objects.Ship("ship2");
-        game.addChild(ship);
-
-        //add 3 rock object to stage
-        for (var rock = 0; rock < 3; rock++) {
-            rocks[rock] = new objects.Rock("rock");
-            game.addChild(rocks[rock]);
-        }
-
-        //add scoreboard
-        scoreboard = new objects.ScoreBoard();
-
-        //add collision manager
-        collision = new managers.Collision();
-
-
+        
         //add game contariter to stage
         stage.addChild(game);
+        console.log(play)
     }

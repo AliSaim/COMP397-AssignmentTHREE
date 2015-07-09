@@ -23,17 +23,17 @@ var states;
             //instantiate new game container
             game = new createjs.Container();
             //add space object to stage
-            // space = new objects.Space(assets.getResult("space"));
+            space = new objects.Space(assets.loader.getResult("space"));
             game.addChild(space);
             //add gem object to stage
-            //gem = new objects.Gem(assets.getResult("gem"));
+            gem = new objects.Gem("gem");
             game.addChild(gem);
             //add ship object to stage
-            // ship = new objects.Ship(assets.getResult("ship"));
+            ship = new objects.Ship("ship2");
             game.addChild(ship);
             //add 3 rock object to stage
             for (var rock = 0; rock < 3; rock++) {
-                //rocks[rock] = new objects.Rock(assets.getResult("rock"));
+                rocks[rock] = new objects.Rock("rock");
                 game.addChild(rocks[rock]);
             }
             //add scoreboard
