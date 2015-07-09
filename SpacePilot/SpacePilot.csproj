@@ -59,6 +59,14 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\audio\collect.mp3" />
+    <Content Include="assets\audio\gameOver.wav" />
+    <Content Include="assets\audio\hitOne.wav" />
+    <Content Include="assets\audio\hitTwo.mp3" />
+    <Content Include="assets\audio\shoot.wav" />
+    <Content Include="assets\audio\space.mp3" />
+    <Content Include="assets\audio\spaceShipTwo.mp3" />
+    <Content Include="assets\audio\spacesShipOne.wav" />
     <Content Include="assets\images\earthSpace.png" />
     <Content Include="assets\images\gem.png" />
     <Content Include="assets\images\rock.png" />
@@ -92,11 +100,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="assets\audio\" />
     <Folder Include="assets\fonts\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\game.ts" />
+    <TypeScriptCompile Include="Scripts\objects\gameobject.ts" />
     <TypeScriptCompile Include="Scripts\objects\gem.ts" />
     <TypeScriptCompile Include="Scripts\objects\rock.ts" />
     <TypeScriptCompile Include="Scripts\objects\ship.ts" />

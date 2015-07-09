@@ -3,6 +3,7 @@
 /// <reference path="typings/tweenjs/tweenjs.d.ts" />
 /// <reference path="typings/soundjs/soundjs.d.ts" />
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
+/// <reference path="objects/gameobject.ts" />
 /// <reference path="objects/space.ts" />
 /// <reference path="objects/ship.ts" />
 /// <reference path="objects/gem.ts" />
@@ -16,7 +17,11 @@ var manifest = [
     { id: "space", src: "assets/images/earthSpace.png" },
     { id: "ship", src: "assets/images/ship2.png" },
     { id: "gem", src: "assets/images/gem.png" },
-    { id: "rock", src: "assets/images/rock.png" }
+    { id: "rock", src: "assets/images/rock.png" },
+    //sounds
+    { id: "collectSound", src: "assets/audio/collect.mp3" },
+    { id: "hitSound", src: "assets/audio/hitOne.wav" },
+    { id: "engineSound", src: "assets/audio/spaceShipTwo.mp3" }
 ];
 // Game Variables
 var space;
@@ -59,12 +64,33 @@ function preload() {
         gem.update();
         for (var rock = 0; rock < 3; rock++) {
             rocks[rock].update();
+            checkCollision(rocks[rock]);
         }
+        checkCollision(gem);
         stage.update();
         stats.end(); //end measuring
     }
+    //Distance utility function
     function distance(p1, p2) {
         return Math.floor(Math.sqrt(Math.pow((p2.x - p1.x), 2) + Math.pow((p2.y - p1.y), 2)));
+    }
+    //check distance between ship and rock
+    function checkCollision(gameObject) {
+        var p1 = new createjs.Point();
+        var p2 = new createjs.Point();
+        p1.x = ship.x;
+        p1.y = ship.y;
+        p2.x = gameObject.x;
+        p2.y = gameObject.y;
+        if (distance(p1, p2) < ((ship.heigh * 0.5) + (gameObject.heigh * 0.5))) {
+            if (gameObject.isColliding == false) {
+                createjs.Sound.play(gameObject.sound);
+            }
+            gameObject.isColliding = true;
+        }
+        else {
+            gameObject.isColliding = false;
+        }
     }
     // Our Main Game Function
     function main() {

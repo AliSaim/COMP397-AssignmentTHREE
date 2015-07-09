@@ -1,30 +1,18 @@
 ﻿module objects {
     //Gem Class ++++++++++++++++++++++++++++++++++++
-    export class Gem extends createjs.Bitmap {
-        //PUBLIC PROPERTIES +++++++++++++++++++++++++
-        width: number;
-        heigh: number;
-        dx: number = 5;
-
-
+    export class Gem extends objects.GameObject {
+        
         //CONSTRUCTOR +++++++++++++++++++++++++++++++
         constructor(imageString: string) {
             super(imageString);
-            this.width = this.getBounds().width;
-            this.heigh = this.getBounds().height;
-            this.regX = this.width * 0.5;
-            this.regY = this.heigh * 0.5;
-
-            //this.x = 600
+            this.sound = "collectSound";
+            this.dx = 5;
             
             this.reset();
-
         }
 
 
         //PRIVATE METHODS
-
-
         private checkBounds(): void {
 
             //Check if gem has left the screen
@@ -33,15 +21,10 @@
             }
         }
 
-        private reset(): void{
-            //this.y = Math.floor(Math.random() * 480); //stage gem at random location
-            //this.x = - this.width; //starts gem off stage
-
+        private reset(): void {
             this.x = 640
             this.y = Math.floor(Math.random() * 480); //stage gem at random location
-         
         }
-
 
         //PUBLIC METHODS ++++++++++++++++++++++++++++
         public update(): void {

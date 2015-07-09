@@ -22,7 +22,7 @@ var objects;
         Space.prototype.checkBounds = function () {
             //Check if Space has left the screen
             if (this.x == -3342) {
-                console.log("re-draw image");
+                //console.log("re-draw image");
                 this.reset();
             }
         };

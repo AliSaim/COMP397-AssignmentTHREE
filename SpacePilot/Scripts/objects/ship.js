@@ -12,10 +12,7 @@ var objects;
         //CONSTRUCTOR +++++++++++++++++++++++++++++++
         function Ship(imageString) {
             _super.call(this, imageString);
-            this.width = this.getBounds().width;
-            this.heigh = this.getBounds().height;
-            this.regX = this.width * 0.5;
-            this.regY = this.heigh * 0.5;
+            this.sound = "engineSound";
             this.x = 50;
         }
         //PUBLIC METHODS ++++++++++++++++++++++++++++
@@ -23,7 +20,7 @@ var objects;
             this.y = stage.mouseY; //Position ship under mouse
         };
         return Ship;
-    })(createjs.Bitmap);
+    })(objects.GameObject);
     objects.Ship = Ship;
 })(objects || (objects = {}));
 //# sourceMappingURL=ship.js.map
