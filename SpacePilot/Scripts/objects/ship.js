@@ -14,6 +14,7 @@ var objects;
             _super.call(this, imageString);
             this.sound = "engineSound";
             this.x = 50;
+            createjs.Sound.play(this.sound, { "loop": -1 });
         }
         //PUBLIC METHODS ++++++++++++++++++++++++++++
         Ship.prototype.update = function () {

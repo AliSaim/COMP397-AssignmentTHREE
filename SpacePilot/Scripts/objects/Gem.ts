@@ -5,6 +5,7 @@
         //CONSTRUCTOR +++++++++++++++++++++++++++++++
         constructor(imageString: string) {
             super(imageString);
+            this.name = "gem";
             this.sound = "collectSound";
             this.dx = 5;
             

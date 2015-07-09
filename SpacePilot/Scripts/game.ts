@@ -11,6 +11,10 @@
 /// <reference path="objects/gem.ts" />
 /// <reference path="objects/rock.ts" />
 
+/// <reference path="objects/scoreboard.ts" />
+
+/// <reference path="managers/collision.ts" />
+
 
 // Game Framework Variables
 var canvas = document.getElementById("canvas");
@@ -36,6 +40,11 @@ var space: objects.Space;
 var ship: objects.Ship;
 var gem: objects.Gem;
 var rocks: objects.Rock[] = [];
+
+var scoreboard: objects.ScoreBoard;
+
+//Game Managers
+var collision: managers.Collision;
 
 
 //preloader Function
@@ -80,41 +89,17 @@ function preload() {
       
         for (var rock = 0; rock < 3; rock++) {
             rocks[rock].update();
-            checkCollision(rocks[rock])
+            collision.check(rocks[rock]);
         }
 
-        checkCollision(gem);
+
+        collision.check(gem);
+        scoreboard.update();
+
         stage.update();
 
         stats.end(); //end measuring
     }
-
-
-   
-    //check distance between ship and rock
-    function checkCollision(gameObject: objects.GameObject) {
-        var p1: createjs.Point = new createjs.Point();
-        var p2: createjs.Point = new createjs.Point();
-        p1.x = ship.x;
-        p1.y = ship.y;
-
-        p2.x = gameObject.x;
-        p2.y = gameObject.y;
-
-        if (utility.distance(p1, p2) < ((ship.heigh * 0.5) + (gameObject.heigh * 0.5))) {
-            if (gameObject.isColliding == false) {
-                createjs.Sound.play(gameObject.sound);
-                //console.log("Collision");
-            }
-            gameObject.isColliding = true;
-        }
-        else {
-            gameObject.isColliding = false;
-        }
-    }
-
-
-
 
     // Our Main Game Function
     function main() {
@@ -136,5 +121,11 @@ function preload() {
             rocks[rock] = new objects.Rock(assets.getResult("rock"));
             stage.addChild(rocks[rock]);
         }
+
+        //add scoreboard
+        scoreboard = new objects.ScoreBoard();
+
+        //add collision manager
+        collision = new managers.Collision();
     }
 }

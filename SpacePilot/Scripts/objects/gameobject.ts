@@ -6,6 +6,7 @@
         public heigh: number;
         public isColliding: boolean = false;
         public sound: string = "";
+        public name: string = "";
 
         //PROTECTED PROPERTIES +++++++++++++++++++++++++++++
         protected dx: number;

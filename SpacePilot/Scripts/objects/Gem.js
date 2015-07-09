@@ -12,6 +12,7 @@ var objects;
         //CONSTRUCTOR +++++++++++++++++++++++++++++++
         function Gem(imageString) {
             _super.call(this, imageString);
+            this.name = "gem";
             this.sound = "collectSound";
             this.dx = 5;
             this.reset();

@@ -12,6 +12,7 @@ var objects;
         //CONSTRUCTOR +++++++++++++++++++++++++++++++
         function Rock(imageString) {
             _super.call(this, imageString);
+            this.name = "rock";
             this.sound = "hitSound";
             this.reset();
         }
