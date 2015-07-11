@@ -6,6 +6,7 @@ var managers;
             //PRIVATE PROPERTIES
             this.manifest = [
                 { id: "space", src: "assets/images/earthSpace.png" },
+                { id: "playAgain", src: "assets/images/playAgain.png" },
                 //sounds
                 { id: "collectSound", src: "assets/audio/collect.mp3" },
                 { id: "hitSound", src: "assets/audio/hitOne.wav" },

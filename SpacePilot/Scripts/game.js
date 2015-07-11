@@ -24,6 +24,13 @@ var ship;
 var gem;
 var rocks = [];
 var scoreboard;
+var tryAgainButton;
+var playButton;
+var gameNameLabel;
+var gameInformation;
+var quitGame;
+var menuBackgroundIamge;
+var isPlayButtonClicked = false;
 //Game Managers
 var assets;
 var collision;
@@ -64,12 +71,98 @@ function gameLoop() {
 }
 // Our Main Game Function
 function main() {
-    //instantiate new game container
-    game = new createjs.Container();
-    //instantiate play state
     play = new states.Play();
-    //add game contariter to stage
-    stage.addChild(game);
-    console.log(play);
+    // Display Try Again Button
+    menuBackgroundIamge = new createjs.Bitmap("assets/images/MenuBackground2.jpg");
+    stage.addChild(menuBackgroundIamge);
+    // Display Game Title 
+    gameNameLabel = new createjs.Text("MAIL PILOT", "40px Arial");
+    gameNameLabel.x = 200;
+    gameNameLabel.y = 20;
+    stage.addChild(gameNameLabel);
+    // Display Play Button in the menu screen
+    playButton = new createjs.Bitmap("assets/images/PlayGame.jpg");
+    playButton.x = 250; //center of the screen in the x asix minus the half the width of the image
+    playButton.y = 200;
+    stage.addChild(playButton);
+    playButton.addEventListener("click", tryAgainButtonClicked);
+    playButton.on("mouseover", tryAgainButtonOver);
+    playButton.on("mouseout", tryAgainButtonOut);
+    // Display Game information Button in the menu screen
+    gameInformation = new createjs.Bitmap("assets/images/instruction.jpg");
+    gameInformation.x = 248;
+    gameInformation.y = 300;
+    stage.addChild(gameInformation);
+    //gameInformation.addEventListener("click");
+    gameInformation.on("mouseover", tryAgainButtonOver);
+    gameInformation.on("mouseout", tryAgainButtonOut);
+    // Display Qit Game  Button in the menu screen
+    quitGame = new createjs.Bitmap("assets/images/quit.jpg");
+    quitGame.x = 277;
+    quitGame.y = 400;
+    stage.addChild(quitGame);
+    //playButton.addEventListener("click", tryAgainButtonClicked);
+    quitGame.on("mouseover", tryAgainButtonOver);
+    quitGame.on("mouseout", tryAgainButtonOut);
+    stage.removeChild(gameNameLabel);
+}
+function tryAgainButtonClicked(event) {
+    console.log("get game to reload");
+    isPlayButtonClicked = true;
+    //play.update();
+    play = new states.Play();
+    //gameLoop();
+    //play.update();
+    //createjs.Sound.play("clicked");
+}
+// Callback functions that change the alpha transparency of the button
+// Mouseover event
+function tryAgainButtonOver() {
+    tryAgainButton.alpha = 0.8;
+}
+// Mouseout event
+function tryAgainButtonOut() {
+    tryAgainButton.alpha = 1.0;
+}
+function gameOverState() {
+    console.log("Remove everhthing");
+    // Game Over Scene 
+    var gameOverLabel;
+    var finalScoreLabel;
+    var finalScore;
+    // Declare new Game Container
+    //game = new createjs.Container();
+    // Instantiate Game Objects
+    //ocean = new objects.Ocean(stage, game);
+    stage.removeChild(game);
+    game.removeAllChildren();
+    game.removeAllEventListeners();
+    this.ship.sound = "";
+    this.gem.sound = "";
+    applicationCache.removeEventListener;
+    stage.clear();
+    space = new objects.Space(assets.loader.getResult("space"));
+    stage.addChild(space);
+    // Show Cursor
+    stage.cursor = "default";
+    // Display Game Over
+    gameOverLabel = new createjs.Text("GAME OVER", "40px Arial");
+    gameOverLabel.x = 200;
+    gameOverLabel.y = 150;
+    stage.addChild(gameOverLabel);
+    // Display Final Score Label
+    finalScoreLabel = new createjs.Text("FINAL SCORE:" + scoreboard.score.toString(), "40px Arial");
+    finalScoreLabel.x = 175;
+    finalScoreLabel.y = 250;
+    stage.addChild(finalScoreLabel);
+    // Display Try Again Button
+    tryAgainButton = new createjs.Bitmap("assets/images/playAgain.jpg");
+    tryAgainButton.x = 244;
+    tryAgainButton.y = 400;
+    stage.addChild(tryAgainButton);
+    //tryAgain.addEventListener("click", tryAgainClicked);
+    tryAgainButton.on("click", tryAgainButtonClicked);
+    tryAgainButton.on("mouseover", tryAgainButtonOver);
+    tryAgainButton.on("mouseout", tryAgainButtonOut);
 }
 //# sourceMappingURL=game.js.map

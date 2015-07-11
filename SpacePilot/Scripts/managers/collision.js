@@ -18,6 +18,16 @@ var managers;
                     createjs.Sound.play(gameObject.sound);
                     if (gameObject.name == "rock") {
                         scoreboard.lives--;
+                        if (scoreboard.lives <= 3) {
+                            scoreboard.changeScoreBoardLiveColorToOrange();
+                            console.log("Game Over state should be displayed");
+                        }
+                        if (scoreboard.lives <= 1) {
+                            scoreboard.changeScoreBoardLiveColorToRed();
+                        }
+                        if (scoreboard.lives == 0) {
+                            gameOverState();
+                        }
                     }
                     if (gameObject.name == "gem") {
                         scoreboard.score += 100;

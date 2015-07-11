@@ -68,8 +68,16 @@
     <Content Include="assets\audio\spaceShipTwo.mp3" />
     <Content Include="assets\audio\spacesShipOne.wav" />
     <Content Include="assets\images\atlas.png" />
+    <Content Include="assets\images\back.JPG" />
     <Content Include="assets\images\earthSpace.png" />
     <Content Include="assets\images\gem.png" />
+    <Content Include="assets\images\instruction.JPG" />
+    <Content Include="assets\images\MenuBackground.jpg" />
+    <Content Include="assets\images\MenuBackground2.jpg" />
+    <Content Include="assets\images\PlayAgain.JPG" />
+    <Content Include="assets\images\playAgain.png" />
+    <Content Include="assets\images\PlayGame.JPG" />
+    <Content Include="assets\images\quit.JPG" />
     <Content Include="assets\images\rock.png" />
     <Content Include="assets\images\ship.png" />
     <Content Include="assets\images\ship2.png" />
